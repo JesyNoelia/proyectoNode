@@ -51,3 +51,8 @@ Content-Type: application/json
 //Borrar productos
 ###
 DELETE http://localhost:3000/api/productos/25
+
+
+// Obtener lista de pedidos por Id de usuario
+###
+GET http://localhost:3000/api/pedidos/1
