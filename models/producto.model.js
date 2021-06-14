@@ -1,10 +1,67 @@
-const getAllProductos = () => {
+
+// --> TODOS LOS PRODUCTOS
+const getAllProductos = (limit = 12, page = 1) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from articulos', (err, rows) => {
+        db.query('select * from articulos limit ?, ?', [limit * (page - 1), limit], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
     });
 }
 
-module.exports = { getAllProductos }
+
+// --> PRODUCTO POR ID
+const getById = (pProductoId) => {
+
+    return new Promise((resolve, reject) => {
+        db.query('select * from articulos where id = ?', [pProductoId], (err, rows) => {
+
+            if (err) reject(err);
+            if (rows.length !== 1) resolve(null);
+
+            resolve(rows[0]);
+        })
+    });
+}
+
+
+// --> CREAR NUEVO PRODUCTO
+const create = ({ titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio }) => {
+    return new Promise((resolve, reject) => {
+        db.query('insert into articulos (titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio], (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        });
+    });
+}
+
+
+// --> MODIFICAR PRODUCTO POR ID
+const update = (pProductoId, { titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio }) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'update articulos set titulo = ?, precio = ?, descripcion = ?, talla = ?, curso = ?, estado = ?, imagen = ?, fk_usuario = ?, fk_categoria = ?, fk_colegio = ? where id = ?',
+
+            [titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio, pProductoId],
+            (err, result) => {
+
+                if (err) reject(err);
+                resolve(result);
+            });
+    });
+}
+
+
+// --> BORRAR PRODUCTO POR ID
+const deleteById = (pProductoId) => {
+    return new Promise((resolve, reject) => {
+        db.query('delete from articulos where id= ?', [pProductoId], (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        })
+    });
+}
+
+
+
+module.exports = { getAllProductos, getById, create, update, deleteById }

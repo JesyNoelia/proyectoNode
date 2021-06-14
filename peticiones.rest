@@ -1,1 +1,53 @@
-GET localhost:3000/api/productos
+//Obtener los productos
+GET http://localhost:3000/api/productos
+
+
+
+
+//Obtener producto por ID
+###
+http://localhost:3000/api/productos/5
+
+
+
+//Añadir productos nuevos
+###
+POST http://localhost:3000/api/productos
+Content-Type: application/json
+
+{
+    "titulo": "mochila",
+    "precio": "10",
+    "descripcion": "Mochila doble asa",
+    "talla": "",
+    "curso": "",
+    "estado": "usado",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRibNl9VvuLuA0LDwsWnqweoufc5Qry3hzQlP3LHmB_Ir_eDUPTbLksp0DknK4WTAGvO2fondw&usqp=CAc",
+    "fk_usuario": 1,
+    "fk_categoria": 2,
+    "fk_colegio":3
+}
+
+
+
+//Modificar productos
+###
+PUT http://localhost:3000/api/productos/25
+Content-Type: application/json
+
+{
+   "titulo": "Cambio para probar: mochila",
+    "precio": "10",
+    "descripcion": "Mochila doble asa",
+    "talla": "",
+    "curso": "",
+    "estado": "usado",
+    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRibNl9VvuLuA0LDwsWnqweoufc5Qry3hzQlP3LHmB_Ir_eDUPTbLksp0DknK4WTAGvO2fondw&usqp=CAc",
+    "fk_usuario": 1,
+    "fk_categoria": 2,
+    "fk_colegio":3
+}
+
+//Borrar productos
+###
+DELETE http://localhost:3000/api/productos/25
