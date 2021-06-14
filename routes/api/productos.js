@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { getAllProductos, getById, create, update, deleteById } = require('../../models/producto.model');
+const { getAllProductos, getById, create, update, deleteById, getByWord } = require('../../models/producto.model');
 
 
 //----> Llamada a model para visualizar todos los productos
@@ -16,6 +16,21 @@ router.get('/', async (req, rest) => {
         rest.json({ error: 'error' });
     }
 })
+
+// --> OBTENER por palabra
+router.get('/search/:word', async (req, rest) => {
+
+    try {
+
+        const rows = await getByWord(req.params.word);
+        rest.json(rows);
+    } catch {
+        rest.json({ error: 'error' });
+    }
+})
+
+
+
 
 
 // --> producto ID

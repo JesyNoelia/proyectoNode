@@ -62,6 +62,18 @@ const deleteById = (pProductoId) => {
     });
 }
 
+// --> BUSCAR por palabra
+const getByWord = (pSearch) => {
+
+    return new Promise((resolve, reject) => {
+        db.query(`SELECT * FROM articulos WHERE articulos.titulo LIKE "%${pSearch}%" OR articulos.descripcion LIKE "%${pSearch}%"`, (err, result) => {
+            if (err) reject(err);
+            console.log(result);
+            resolve(result);
+        });
+    });
+}
 
 
-module.exports = { getAllProductos, getById, create, update, deleteById }
+
+module.exports = { getAllProductos, getById, create, update, deleteById, getByWord }
