@@ -5,7 +5,7 @@ var router = express.Router();
 
 
 const apiProductosRouter = require('./api/productos');
-const apiPedidosRouter = require('api/pedidos')
+const apiPedidosRouter = require('./api/pedidos')
 
 
 
