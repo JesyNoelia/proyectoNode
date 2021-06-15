@@ -11,5 +11,16 @@ const getColegioByWord = (pSearch) => {
     });
 }
 
+// --> Obtener los productos de cada colegio
+const getProductosColegio = (pColegio) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from articulos where fk_colegio = (select id from colegios where nombre = ?)', [pColegio], (err, result) => {
+            if (err) reject(err);
 
-module.exports = { getColegioByWord }
+            resolve(result);
+        })
+    })
+}
+
+
+module.exports = { getColegioByWord, getProductosColegio }
