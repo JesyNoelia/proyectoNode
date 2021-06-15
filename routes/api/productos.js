@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { getAllProductos, getById, create, update, deleteById, getByWord } = require('../../models/producto.model');
+const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria } = require('../../models/producto.model');
 
 
 //----> Llamada a model para visualizar todos los productos
@@ -17,7 +17,7 @@ router.get('/', async (req, rest) => {
     }
 })
 
-// --> OBTENER por palabra
+// --> OBTENER por PALABRA
 router.get('/search/:word', async (req, rest) => {
 
     try {
@@ -28,6 +28,24 @@ router.get('/search/:word', async (req, rest) => {
         rest.json({ error: 'error' });
     }
 })
+
+// --> OBTENER POR CATEGORIA
+//GET http://localhost:3000/api/productos/categorias/uniformes
+router.get('/categorias/:categoria', async (req, res) => {
+    console.log(req.params.categoria);
+    try {
+        const categoria = await getByCategoria(req.params.categoria)
+        if (categoria) {
+            res.json(categoria);
+        } else {
+            res.json({ message: 'la categoria del producto no existe' });
+        }
+
+    } catch (error) {
+        res.json({ error: 'no funciona' });
+    }
+
+});
 
 
 

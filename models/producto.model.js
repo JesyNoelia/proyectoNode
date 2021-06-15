@@ -74,6 +74,19 @@ const getByWord = (pSearch) => {
     });
 }
 
+// --> BUSCAR POR CATEGORIA
+const getByCategoria = (pCategoria) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from articulos where fk_categoria = (select id from categorias where nombre = ?)', [pCategoria], (err, rows) => {
+            console.log(err);
+            if (err) reject(err);
+            resolve(rows);
+        });
+    })
+}
 
 
-module.exports = { getAllProductos, getById, create, update, deleteById, getByWord }
+
+
+
+module.exports = { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria }
