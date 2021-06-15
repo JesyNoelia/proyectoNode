@@ -12,6 +12,11 @@ GET http://localhost:3000/api/productos/categorias/libros
 GET http://localhost:3000/api/productos/5
 
 
+// Obtener productos por palabra
+###
+GET http://localhost:3000/api/productos/search/mochi
+
+
 
 //Añadir productos nuevos
 ###
@@ -71,3 +76,12 @@ Content-Type: application/json
     "fk_usuario": 2,
     "fk_articulo": 4
 }
+
+// ------> OBTENER COLEGIOS POR PAlABRA
+###
+GET http://localhost:3000/api/colegios/search/la m
+
+
+// --> Articulos de cada cole
+###
+GET http://localhost:3000/api/colegios/articulos/la merced
