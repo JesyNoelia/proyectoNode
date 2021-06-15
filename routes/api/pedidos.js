@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getPedidosById } = require('../../models/pedido.model')
+const { getPedidosById, createPedido } = require('../../models/pedido.model')
 
 
 // --> obtener pedidos por Id de usuario
@@ -16,6 +16,20 @@ router.get('/:usuarioId', async (req, res) => {
     } catch (error) {
         res.json({ error: 'no funciona' });
     }
+
+});
+
+// --> CREAR nuevo pedido
+/// POST http://localhost:3000/api/pedidos
+
+router.post('/', (req, res) => {
+    createPedido(req.body)
+        .then(result => {
+            res.json(result);
+        })
+        .catch(error => {
+            console.log(error);
+        })
 
 });
 

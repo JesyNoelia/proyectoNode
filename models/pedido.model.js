@@ -10,8 +10,19 @@ const getPedidosById = (pUsuarioId) => {
     });
 }
 
+// --> Crear pedido
+const createPedido = ({ numero_pedido, fk_usuario, fk_articulo }) => {
+    return new Promise((resolve, reject) => {
+        // numero_pedido = 'Albaran' + numero_pedido;
+        db.query('insert into pedidos (numero_pedido, fk_usuario, fk_articulo) values (?, ?, ?)', [numero_pedido, fk_usuario, fk_articulo], (err, result) => {
+            if (err) reject(err);
+            resolve(result);
+        });
+    });
+}
 
 
 
 
-module.exports = { getPedidosById }
+
+module.exports = { getPedidosById, createPedido }
