@@ -71,3 +71,17 @@ Content-Type: application/json
     "fk_usuario": 2,
     "fk_articulo": 4
 }
+
+//PETICIONES DE USUARIOS
+###
+POST http://localhost:3000/api/usuarios/registro
+Content-Type: application/json
+
+{
+    "nombre":"Maria",
+    "apellidos": "Perez Gonzalez",
+    "email":"marian@hotmail.com",
+    "telefono": "654789321",
+    "password":"123456",
+    "fk_colegio": 3
+}
