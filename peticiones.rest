@@ -58,19 +58,24 @@ DELETE http://localhost:3000/api/productos/25
 
 // Obtener lista de pedidos por Id de usuario
 ###
-GET http://localhost:3000/api/pedidos/3
-
+GET http://localhost:3000/api/pedidos/2
 
 // CREAR PEDIDOS
 ###
 POST http://localhost:3000/api/pedidos
 Content-Type: application/json
 
-{
-    "numero_pedido": "Albaran1",
-    "fk_usuario": 2,
-    "fk_articulo": 4
-}
+[
+    {
+      
+        "fk_usuario": 2,
+        "fk_articulo": 4
+    },
+    {
+        "fk_usuario": 2,
+        "fk_articulo": 5
+    }
+]
 
 //PETICIONES DE USUARIOS
 ###

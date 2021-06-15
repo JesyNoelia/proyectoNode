@@ -22,15 +22,17 @@ router.get('/:usuarioId', async (req, res) => {
 // --> CREAR nuevo pedido
 /// POST http://localhost:3000/api/pedidos
 
-router.post('/', (req, res) => {
-    createPedido(req.body)
-        .then(result => {
-            res.json(result);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+router.post('/', async (req, res) => {
+    const numeropedido = 'pedido_' + Date.now();
 
+    for (let producto of req.body) {
+        producto.numero_pedido = numeropedido;
+        const resultPedido = await createPedido(producto);
+        if (resultPedido) {
+            res.json({ 'message': 'pedido realizado' });
+        }
+
+    }
 });
 
 
