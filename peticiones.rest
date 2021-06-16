@@ -51,6 +51,7 @@ Content-Type: application/json
     "curso": "",
     "estado": "usado",
     "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRibNl9VvuLuA0LDwsWnqweoufc5Qry3hzQlP3LHmB_Ir_eDUPTbLksp0DknK4WTAGvO2fondw&usqp=CAc",
+    "disponible": 0,
     "fk_usuario": 1,
     "fk_categoria": 2,
     "fk_colegio":3
@@ -82,15 +83,24 @@ Content-Type: application/json
     }
 ]
 
+
+###
+PUT  http://localhost:3000/api/productos/disponibilidad/8
+Content-Type: application/json
+
+{
+    "disponible": 1
+}
+
 //PETICIONES DE USUARIOS
 ###
 POST http://localhost:3000/api/usuarios/registro
 Content-Type: application/json
 
 {
-    "nombre":"Maria",
-    "apellidos": "Perez Gonzalez",
-    "email":"marian@hotmail.com",
+    "nombre":"Jose",
+    "apellidos": "Martinez",
+    "email":"josemartinez@hotmail.com",
     "telefono": "654789321",
     "password":"123456",
     "fk_colegio": 3
