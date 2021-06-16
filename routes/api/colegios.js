@@ -1,29 +1,41 @@
 const router = require('express').Router();
-const { getColegioByWord, getProductosColegio } = require('../../models/colegio.model');
+const { getColegioByWord, getProductosColegio, getIdNombre } = require('../../models/colegio.model');
 
 
 // --> OBTENER COLEGIO por PALABRA
 // GET http://localhost:3000/api/colegios/search/merced
-router.get('/search/:word', async (req, rest) => {
+router.get('/search/:word', async (req, res) => {
 
     try {
 
         const rows = await getColegioByWord(req.params.word);
-        rest.json(rows);
+        res.json(rows);
     } catch {
-        rest.json({ error: 'error' });
+        res.json({ error: 'error' });
     }
 })
 
 //--> Obtener los productos de cada cole
 // GET http://localhost:3000/api/colegios/articulos/:cole
-router.get('/articulos/:cole', async (req, rest) => {
+router.get('/articulos/:cole', async (req, res) => {
     try {
 
         const rows = await getProductosColegio(req.params.cole);
-        rest.json(rows);
+        res.json(rows);
     } catch {
-        rest.json({ error: 'error' });
+        res.json({ error: 'error' });
+    }
+})
+
+//Obtener de los coles: Nombre e Id
+//GET http://localhost:3000/api/colegios/buscar
+
+router.get('/buscar', async (req, res) => {
+    try {
+        const rows = await getIdNombre();
+        res.json(rows);
+    } catch {
+        res.json({ error: 'error' });
     }
 })
 
