@@ -96,6 +96,22 @@ Content-Type: application/json
     "fk_colegio": 3
 }
 
+
+//LOGIN DE USUARIO
+###
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email":"marian@hotmail.com",
+    "password":"123456"
+}
+
+
+//OBTENER USUARIO POR ID
+###
+GET http://localhost:3000/api/usuarios/perfil
+
 // ------> OBTENER COLEGIOS POR PAlABRA
 ###
 GET http://localhost:3000/api/colegios/search/la m
