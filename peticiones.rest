@@ -112,6 +112,10 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/api/usuarios/perfil
 
+
+
+
+
 // ------> OBTENER COLEGIOS POR PAlABRA
 ###
 GET http://localhost:3000/api/colegios/search/la m
@@ -119,4 +123,11 @@ GET http://localhost:3000/api/colegios/search/la m
 
 // --> Articulos de cada cole
 ###
-GET http://localhost:3000/api/colegios/articulos/la merced
+GET http://localhost:3000/api/colegios/articulos/purisima
+
+
+// --> Nombre de coles e ID
+###
+GET http://localhost:3000/api/colegios/buscar
+
+
