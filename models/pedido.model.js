@@ -25,4 +25,6 @@ const createPedido = ({ numero_pedido, fk_usuario, fk_articulo }) => {
 
 
 
+
+
 module.exports = { getPedidosById, createPedido }
