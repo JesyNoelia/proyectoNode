@@ -1,11 +1,27 @@
 
-const router = require('express').Router();
+
 
 const { createUser, getByEmail } = require('../../models/usuarios.model');
 
+const router = require('express').Router();
+const bcrypt = require('bcryptjs');
+const { body, validationResult } = require('express-validator');
+
 //POST localhost:3000/api/usuarios/registro
-router.post('/registro', (req, res) => {
-    console.log(req.body);
+router.post('/registro', [body('nombre', 'El campo nombre debe ser mayor a 3 caracteres').isLength({ min: 3 }),
+body('email', 'El email debe tener un formato correcto').isEmail()], async (req, res) => {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const usuario = await getByEmail(req.body.email);
+
+    if (usuario) {
+        return res.json({ error: 'El usuario ya esta registrado' })
+    };
+    req.body.password = bcrypt.hashSync(req.body.password, 10)
+    //console.log(req.body);
     createUser(req.body)
 
         .then(result => { res.json(result) })
