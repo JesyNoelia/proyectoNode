@@ -2,11 +2,12 @@
 // --> TODOS LOS PRODUCTOS
 const getAllProductos = (limit = 12, page = 1) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from articulos limit ?, ?', [limit * (page - 1), limit], (err, rows) => {
+        db.query('select * from articulos where disponible =1 limit ?, ?', [limit * (page - 1), limit], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
     });
+
 }
 
 
@@ -37,18 +38,31 @@ const create = ({ titulo, precio, descripcion, talla, curso, estado, imagen, fk_
 
 
 // --> MODIFICAR PRODUCTO POR ID
-const update = (pProductoId, { titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio }) => {
+const update = (pProductoId, { titulo, precio, descripcion, talla, curso, estado, imagen, disponible, fk_usuario, fk_categoria, fk_colegio }) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'update articulos set titulo = ?, precio = ?, descripcion = ?, talla = ?, curso = ?, estado = ?, imagen = ?, fk_usuario = ?, fk_categoria = ?, fk_colegio = ? where id = ?',
+            'update articulos set titulo = ?, precio = ?, descripcion = ?, talla = ?, curso = ?, estado = ?, imagen = ?, disponible =?, fk_usuario = ?, fk_categoria = ?, fk_colegio = ? where id = ?',
 
-            [titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio, pProductoId],
+            [titulo, precio, descripcion, talla, curso, estado, imagen, disponible, fk_usuario, fk_categoria, fk_colegio, pProductoId],
             (err, result) => {
 
                 if (err) reject(err);
                 resolve(result);
             });
     });
+}
+
+// MODIFICAR DISPONIBILIDAD DE PRODUCTO
+const updateDisponibilidad = (pProductoId, { disponible }) => {
+    console.log(disponible);
+    return new Promise((resolve, reject) => {
+        db.query('UPDATE articulos SET disponible= ?  WHERE id=?;', [disponible, pProductoId],
+            (err, result) => {
+                if (err) reject(err);
+                resolve(result);
+            })
+    })
+
 }
 
 
@@ -89,4 +103,4 @@ const getByCategoria = (pCategoria) => {
 
 
 
-module.exports = { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria }
+module.exports = { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad }

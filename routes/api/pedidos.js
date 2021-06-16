@@ -23,15 +23,10 @@ router.get('/:usuarioId', async (req, res) => {
 /// POST http://localhost:3000/api/pedidos
 
 router.post('/', async (req, res) => {
-    const numeropedido = 'pedido_' + Date.now();
 
-    for (let producto of req.body) {
-        producto.numero_pedido = numeropedido;
-        const resultPedido = await createPedido(producto);
-        if (resultPedido) {
-            res.json({ 'message': 'pedido realizado' });
-        }
-
+    const resultPedido = await createPedido(req.body);
+    if (resultPedido) {
+        res.json({ 'message': 'pedido realizado' });
     }
 });
 
