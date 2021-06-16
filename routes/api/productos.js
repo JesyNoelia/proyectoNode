@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria } = require('../../models/producto.model');
+const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad } = require('../../models/producto.model');
 
 
 //----> Llamada a model para visualizar todos los productos
@@ -82,6 +82,19 @@ router.post('/', (req, res) => {
         })
 
 });
+
+// MODIFICAR DISPONIBILIDAD DE PRODUCTO
+router.put('/disponibilidad/:productoId', async (req, res) => {
+    console.log(req.body);
+    try {
+
+        const result = await updateDisponibilidad(req.params.productoId, req.body);
+        console.log(req.body);
+        res.json(result);
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 // --> MODIFICAR articulos
 //PUT http://localhost:3000/api/productos/5
