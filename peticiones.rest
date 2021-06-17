@@ -113,7 +113,7 @@ POST http://localhost:3000/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email":"marian@hotmail.com",
+    "email":"josemartinez@hotmail.com",
     "password":"123456"
 }
 
@@ -121,6 +121,9 @@ Content-Type: application/json
 //OBTENER USUARIO POR ID
 ###
 GET http://localhost:3000/api/usuarios/perfil
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxMiwiY2FkdWNpZGFkIjoxNjIzOTE4MTkxLCJpYXQiOjE2MjM5MTcyOTF9.pHRP9pgiFNdO9QBha5G1O9cOGSX51lepxOYvLB3L3P8
+
+
 
 // ------> OBTENER COLEGIOS POR PAlABRA
 ###

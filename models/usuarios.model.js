@@ -9,7 +9,7 @@ const createUser = ({ nombre, apellidos, telefono, password, email, fk_colegio }
 
 const getByEmail = (pEmail) => {
     return new Promise((resolve, reject) => {
-        db.query('select *from usuarios where email=?', [pEmail], (err, rows) => {
+        db.query('select * from usuarios where email=?', [pEmail], (err, rows) => {
             if (err) reject(err);
             if (rows.length !== 1) resolve(null);
             resolve(rows[0])
