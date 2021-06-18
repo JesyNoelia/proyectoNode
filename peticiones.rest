@@ -121,7 +121,7 @@ Content-Type: application/json
 //OBTENER USUARIO POR ID
 ###
 GET http://localhost:3000/api/usuarios/perfil
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxMiwiY2FkdWNpZGFkIjoxNjIzOTE4MTkxLCJpYXQiOjE2MjM5MTcyOTF9.pHRP9pgiFNdO9QBha5G1O9cOGSX51lepxOYvLB3L3P8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxMiwiY2FkdWNpZGFkIjoxNjI0MDA1Nzk2LCJpYXQiOjE2MjQwMDQ4OTZ9.rj7YbV82vs2vpNp1LZtuMDJZYuKE6MHca1YFD0bUvkk
 
 
 

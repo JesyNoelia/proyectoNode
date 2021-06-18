@@ -55,7 +55,7 @@ router.get('/perfil', controlToken, (req, res) => {
 function crearToken(pUsuario) {
     const result = {
         usuario_id: pUsuario.id,
-        caducidad: dayjs().add(15, 'minutes').unix()
+        caducidad: dayjs().add(24, 'hours').unix()
     };
     return jwt.sign(result, 'TokenUsuarios')
 };
