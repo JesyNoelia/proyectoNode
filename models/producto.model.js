@@ -99,8 +99,18 @@ const getByCategoria = (pCategoria) => {
     })
 }
 
+// --> OBTENER ARTICULOS SEGUN ID DE USUARIO
+const getAllByIdUsuario = (pIdUsuario) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from articulos where fk_usuario=?', [pIdUsuario], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows);
+        });
+    });
+};
 
 
 
 
-module.exports = { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad }
+
+module.exports = { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario }
