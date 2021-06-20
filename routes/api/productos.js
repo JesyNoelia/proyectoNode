@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario } = require('../../models/producto.model');
+const { controlToken } = require('../middlewares');
 
 
 //----> Llamada a model para visualizar todos los productos
@@ -48,6 +49,21 @@ router.get('/categorias/:categoria', async (req, res) => {
 });
 
 
+//--> OBTENER PRODUCTOS SEGUN ID DE USUARIO
+//GET http://localhost:3000/api/productos/usuario
+router.get('/usuario', controlToken, async (req, res) => {
+    try {
+        const productos = await getAllByIdUsuario(req.user.id);
+        console.log(req.user);
+        if (productos) {
+            res.json(productos);
+        } else {
+            res.json({ message: 'No tienes Productos en registrados' });
+        }
+    } catch (error) {
+        res.json({ error: 'Hay un error' });
+    };
+});
 
 
 
@@ -69,20 +85,6 @@ router.get('/:productoId', async (req, res) => {
 
 });
 
-//--> OBTENER PRODUCTOS SEGUN ID DE USUARIO
-router.get('/usuario/:idUsuario', async (req, res) => {
-    try {
-        const productos = await getAllByIdUsuario(req.params.idUsuario);
-
-        if (productos) {
-            res.json(productos);
-        } else {
-            res.json({ message: 'No tienes Productos en registrados' });
-        }
-    } catch (error) {
-        res.json({ error: 'Hay un error' });
-    };
-});
 
 
 
