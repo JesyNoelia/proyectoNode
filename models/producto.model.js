@@ -29,7 +29,7 @@ const getById = (pProductoId) => {
 // --> CREAR NUEVO PRODUCTO
 const create = ({ titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio }) => {
     return new Promise((resolve, reject) => {
-        db.query('insert into articulos (titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [titulo, precio, descripcion, talla, curso, estado, imagen, fk_usuario, fk_categoria, fk_colegio], (err, result) => {
+        db.query('insert into articulos (titulo, precio, descripcion, talla, curso, estado, imagen, disponible, fk_usuario, fk_categoria, fk_colegio) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [titulo, precio, descripcion, talla, curso, estado, imagen, true, fk_usuario, fk_categoria, fk_colegio], (err, result) => {
             if (err) reject(err);
             resolve(result);
         });
