@@ -4,6 +4,7 @@ const upload = multer({ dest: 'public/images' });
 const fs = require('fs');
 
 const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario } = require('../../models/producto.model');
+const { controlToken } = require('../middlewares');
 
 
 //----> Llamada a model para visualizar todos los productos
@@ -92,8 +93,20 @@ router.get('/usuario/:idUsuario', async (req, res) => {
 // --> CREAR nuevo producto
 /// POST http://localhost:3000/api/productos. 
 
-router.post('/', upload.single('imagen'), (req, res) => {
+router.post('/', controlToken, upload.single('imagen'), (req, res) => {
     console.log(req.body);
+    // Antes de guardar el producto en la base de datos, modificamos la imagen para situarla donde nos interesa
+    const extension = '.' + req.file.mimetype.split('/')[1];
+    // Obtengo el nombre de la nueva imagen
+    const newName = 'http://localhost:3000/images/' + req.file.filename + extension;
+    // Obtengo la ruta donde estará, adjuntándole la extensión
+    const newPath = req.file.path + extension;
+    // Muevo la imagen para que resiba la extensión
+    fs.renameSync(req.file.path, newPath);
+
+    // Modifico el BODY para poder incluir el nombre de la imagen en la BD
+    req.body.imagen = newName;
+    req.body.fk_usuario = (req.user.id);
 
     create(req.body)
         .then(result => {
