@@ -108,6 +108,9 @@ router.post('/', controlToken, upload.single('imagen'), (req, res) => {
     req.body.imagen = newName;
     req.body.fk_usuario = (req.user.id);
 
+    req.body.curso = req.body.curso == 'null' ? null : req.body.curso;
+    req.body.talla = req.body.talla == 'null' ? null : req.body.talla;
+
     create(req.body)
         .then(result => {
             res.json(result);

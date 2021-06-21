@@ -151,3 +151,14 @@ GET http://localhost:3000/api/colegios/buscar
 GET http://localhost:3000/api/categorias/buscar
 
 
+###
+GET http://localhost:3000/api/favoritos/2
+
+###
+POST http://localhost:3000/api/favoritos
+Content-Type: application/json
+
+{
+    "fk_usuario": 8,
+    "fk_articulo": 7
+}
