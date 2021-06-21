@@ -146,3 +146,8 @@ GET http://localhost:3000/api/colegios/articulos/purisima
 GET http://localhost:3000/api/colegios/buscar
 
 
+// --> Nombre de categorias e ID
+###
+GET http://localhost:3000/api/categorias/buscar
+
+

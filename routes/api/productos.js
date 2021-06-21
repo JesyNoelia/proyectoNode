@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const multer = require('multer');
+const upload = multer({ dest: 'public/images' });
+const fs = require('fs');
 
 const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario } = require('../../models/producto.model');
 
@@ -89,7 +92,9 @@ router.get('/usuario/:idUsuario', async (req, res) => {
 // --> CREAR nuevo producto
 /// POST http://localhost:3000/api/productos. 
 
-router.post('/', (req, res) => {
+router.post('/', upload.single('imagen'), (req, res) => {
+    console.log(req.body);
+
     create(req.body)
         .then(result => {
             res.json(result);
