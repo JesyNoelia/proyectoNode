@@ -50,9 +50,6 @@ Content-Type: application/json
     "talla": "",
     "curso": "",
     "estado": "usado",
-    "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRibNl9VvuLuA0LDwsWnqweoufc5Qry3hzQlP3LHmB_Ir_eDUPTbLksp0DknK4WTAGvO2fondw&usqp=CAc",
-    "disponible": 0,
-    "fk_usuario": 1,
     "fk_categoria": 2,
     "fk_colegio":3
 }
