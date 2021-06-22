@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { getFavoritosById, createFavorito } = require('../../models/favorito.model')
+const { getFavoritosById, createFavorito } = require('../../models/favorito.model');
+const { controlToken } = require('../middlewares');
 
 
 // --> obtener favoritos por Id de usuario
@@ -21,9 +22,14 @@ router.get('/:usuarioId', async (req, res) => {
 // --> CREAR nuevo pedido
 /// POST http://localhost:3000/api/favoritos
 
-router.post('/', async (req, res) => {
-    const resultFavorito = await createFavorito(req.body);
-    res.json(resultFavorito)
+router.post('/', controlToken, async (req, res) => {
+    req.body.fk_usuario = (req.user.id);
+    try {
+        const resultFavorito = await createFavorito(req.body);
+        res.json(resultFavorito)
+    } catch (error) {
+        console.log(error)
+    };
 });
 
 
