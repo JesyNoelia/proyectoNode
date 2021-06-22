@@ -25,7 +25,6 @@ router.post('/registro', [body('email', 'El email debe tener un formato correcto
     req.body.password = bcrypt.hashSync(req.body.password, 10)
     //console.log(req.body);
     createUser(req.body)
-
         .then(result => { res.json(result) })
         .catch(error => { console.log(error); })
 });

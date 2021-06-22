@@ -38,12 +38,12 @@ const create = ({ titulo, precio, descripcion, talla, curso, estado, imagen, fk_
 
 
 // --> MODIFICAR PRODUCTO POR ID
-const update = (pProductoId, { titulo, precio, descripcion, talla, curso, estado, imagen, disponible, fk_usuario, fk_categoria, fk_colegio }) => {
+const update = (pProductoId, { titulo, precio, descripcion, talla, curso, estado, fk_categoria, fk_colegio }) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'update articulos set titulo = ?, precio = ?, descripcion = ?, talla = ?, curso = ?, estado = ?, imagen = ?, disponible =?, fk_usuario = ?, fk_categoria = ?, fk_colegio = ? where id = ?',
+            'update articulos set titulo = ?, precio = ?, descripcion = ?, talla = ?, curso = ?, estado = ?, fk_categoria = ?, fk_colegio = ? where id = ?',
 
-            [titulo, precio, descripcion, talla, curso, estado, imagen, disponible, fk_usuario, fk_categoria, fk_colegio, pProductoId],
+            [titulo, precio, descripcion, talla, curso, estado, fk_categoria, fk_colegio, pProductoId],
             (err, result) => {
 
                 if (err) reject(err);
