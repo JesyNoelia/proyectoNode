@@ -109,8 +109,18 @@ const getAllByIdUsuario = (pIdUsuario) => {
     });
 };
 
+// RUTA PARA OBTENER CANTIDAD DE PRODUCTOS Y PAGINAS
+const getInfo = () => {
+    return new Promise((resolve, reject) => {
+        db.query('select count(*) as numProductos, count(*)/12 as numPaginas from articulos', (err, rows) => {
+            if (err) reject(err);
+            resolve(rows[0]);
+        });
+    });
+};
 
 
 
 
-module.exports = { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario }
+
+module.exports = { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario, getInfo }
