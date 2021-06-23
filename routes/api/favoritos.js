@@ -4,10 +4,10 @@ const { controlToken } = require('../middlewares');
 
 
 // --> obtener favoritos por Id de usuario
-// GET http://localhost:3000/api/favoritos/1
-router.get('/:usuarioId', async (req, res) => {
+// GET http://localhost:3000/api/favoritos
+router.get('/', controlToken, async (req, res) => {
     try {
-        const favoritos = await getFavoritosById(req.params.usuarioId)
+        const favoritos = await getFavoritosById(req.user.id)
         if (favoritos) {
             res.json(favoritos);
         } else {

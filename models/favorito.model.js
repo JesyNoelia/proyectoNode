@@ -3,7 +3,7 @@
 
 const getFavoritosById = (pUsuarioId) => {
     return new Promise((resolve, reject) => {
-        db.query('select * from favoritos where fk_usuario=?', [pUsuarioId], (err, rows) => {
+        db.query('select * from articulos as a , favoritos as f  where f.fk_usuario=? AND f.fk_articulo= a.id', [pUsuarioId], (err, rows) => {
             if (err) reject(err);
             resolve(rows);
         });
