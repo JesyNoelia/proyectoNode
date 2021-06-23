@@ -153,6 +153,8 @@ router.put('/disponibilidad/:productoId', async (req, res) => {
 //PUT http://localhost:3000/api/productos/5
 router.put('/:productoId', async (req, res) => {
     try {
+        console.log(req.params.productoId);
+        console.log(req.body);
         const result = await update(req.params.productoId, req.body);
         res.json(result);
     } catch (error) {
