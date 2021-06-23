@@ -110,8 +110,8 @@ POST http://localhost:3000/api/usuarios/login
 Content-Type: application/json
 
 {
-    "email":"josemartinez@hotmail.com",
-    "password":"123456"
+    "email":"jpgimenez@gmail.com",
+    "password":"123456JPG."
 }
 
 
@@ -149,7 +149,8 @@ GET http://localhost:3000/api/categorias/buscar
 
 
 ###
-GET http://localhost:3000/api/favoritos/2
+GET http://localhost:3000/api/favoritos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoxNCwiY2FkdWNpZGFkIjoxNjI0NTIyMTE3LCJpYXQiOjE2MjQ0MzU3MTd9.ClTK1dbQdfM6yxZyMAWncBmd6PDADFGW6_mvueqDenk
 
 ###
 POST http://localhost:3000/api/favoritos
