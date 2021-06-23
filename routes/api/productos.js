@@ -3,7 +3,7 @@ const multer = require('multer');
 const upload = multer({ dest: 'public/images' });
 const fs = require('fs');
 
-const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario } = require('../../models/producto.model');
+const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario, getInfo } = require('../../models/producto.model');
 const { controlToken } = require('../middlewares');
 
 
@@ -20,6 +20,20 @@ router.get('/', async (req, rest) => {
         rest.json({ error: 'error' });
     }
 })
+
+// RUTA PARA OBTENER CANTIDAD DE PRODUCTOS Y PAGINAS
+router.get('/info', async (req, rest) => {
+    try {
+        const rows = await getInfo();
+        console.log(rows);
+        rows.numPaginas = Math.ceil(rows.numPaginas)
+        rest.json(rows);
+    } catch (err) {
+        console.log(err);
+        rest.json({ error: 'error' });
+    };
+});
+
 
 // --> OBTENER por PALABRA
 router.get('/search/:word', async (req, rest) => {
