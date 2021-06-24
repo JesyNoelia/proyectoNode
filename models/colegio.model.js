@@ -23,9 +23,9 @@ const getProductosColegio = (pColegio) => {
 }
 
 // ----> Obtener el nombre e Id de los colegios
-const getIdNombre = () => {
+const getIdCole = (pIdCole) => {
     return new Promise((resolve, reject) => {
-        db.query('select id, nombre from colegios', (err, result) => {
+        db.query('select * from colegios where id=?', [pIdCole], (err, result) => {
             if (err) reject(err);
             console.log(resolve);
             resolve(result);
@@ -44,4 +44,6 @@ const getAllColes = () => {
     })
 }
 
-module.exports = { getColegioByWord, getProductosColegio, getIdNombre, getAllColes }
+
+
+module.exports = { getColegioByWord, getProductosColegio, getIdCole, getAllColes }

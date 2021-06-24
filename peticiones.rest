@@ -140,7 +140,7 @@ GET http://localhost:3000/api/colegios/articulos/purisima
 
 // --> Nombre de coles e ID
 ###
-GET http://localhost:3000/api/colegios/buscar
+GET http://localhost:3000/api/colegios/buscar/3
 
 
 // --> Nombre de categorias e ID
@@ -169,3 +169,7 @@ GET http://localhost:3000/api/productos/info
 
 ###
 GET http://localhost:3000/api/colegios
+
+//obtener productos por id de colegio
+###
+GET http://localhost:3000/api/productos/colegio/3

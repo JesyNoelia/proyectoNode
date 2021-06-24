@@ -3,7 +3,7 @@ const multer = require('multer');
 const upload = multer({ dest: 'public/images' });
 const fs = require('fs');
 
-const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario, getInfo } = require('../../models/producto.model');
+const { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario, getInfo, getProductosByIdCole } = require('../../models/producto.model');
 const { controlToken } = require('../middlewares');
 
 
@@ -100,6 +100,21 @@ router.get('/:productoId', async (req, res) => {
         res.json({ error: 'no funciona' });
     }
 
+});
+
+//OBTENER PRODUCTOS POR ID DE COLEGIO
+router.get('/colegio/:idCole', async (req, res) => {
+    try {
+        const productos = await getProductosByIdCole(req.params.idCole)
+        if (productos) {
+            res.json(productos);
+        } else {
+            res.json({ message: 'No hay Productos en registrados' });
+
+        }
+    } catch (error) {
+        res.json({ error: 'no funciona' });
+    }
 });
 
 

@@ -119,8 +119,17 @@ const getInfo = () => {
     });
 };
 
+const getProductosByIdCole = (idCole) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from articulos where fk_colegio=?', [idCole], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows);
+        });
+    });
+};
 
 
 
 
-module.exports = { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario, getInfo }
+
+module.exports = { getAllProductos, getById, create, update, deleteById, getByWord, getByCategoria, updateDisponibilidad, getAllByIdUsuario, getInfo, getProductosByIdCole }
