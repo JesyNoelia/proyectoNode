@@ -33,5 +33,15 @@ const getIdNombre = () => {
     })
 }
 
+// OBTENER TODOS LOS COLEGIOS
+const getAllColes = () => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from colegios', (err, result) => {
+            if (err) reject(err);
 
-module.exports = { getColegioByWord, getProductosColegio, getIdNombre }
+            resolve(result);
+        })
+    })
+}
+
+module.exports = { getColegioByWord, getProductosColegio, getIdNombre, getAllColes }
