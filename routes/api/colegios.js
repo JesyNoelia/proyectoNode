@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getColegioByWord, getProductosColegio, getIdNombre, getAllColes } = require('../../models/colegio.model');
+const { getColegioByWord, getProductosColegio, getIdCole, getAllColes } = require('../../models/colegio.model');
 
 
 // --> OBTENER COLEGIO por PALABRA
@@ -39,11 +39,11 @@ router.get('/articulos/:cole', async (req, res) => {
 })
 
 //Obtener de los coles: Nombre e Id
-//GET http://localhost:3000/api/colegios/buscar
+//GET http://localhost:3000/api/colegios/buscar/5
 
-router.get('/buscar', async (req, res) => {
+router.get('/buscar/:idCole', async (req, res) => {
     try {
-        const rows = await getIdNombre();
+        const rows = await getIdCole(req.params.idCole);
         res.json(rows);
     } catch {
         res.json({ error: 'error' });
